@@ -1,17 +1,21 @@
 ---
-title: "stringsAsFactors = HELLNO"
-author: "Jenny Bryan"
+title: "foofactors"
+author: "Janani Murthy"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{stringsAsFactors = HELLNO}
+  %\VignetteIndexEntry{Vignette Tite}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+All implementation and documentation of `fbind()` and `freq_out` are based on Jennifer Bryan's [foofactors package.](https://github.com/jennybc/foofactors)
+
 Factors are a very useful type of variable in R, but they can also drive you nuts. Especially the "stealth factor" that you think of as character.
 
 Can we soften some of their sharp edges?
+
+#### 1) Function : fbind()
 
 Binding two factors via `fbind()`:
 
@@ -42,9 +46,45 @@ table(x)
 as.data.frame(table(x))
 ```
 
+#### 2) Function : freq_out()
 The `freq_out()` function returns a frequency table as a well-named `tbl_df`:
 
 ```{r}
 freq_out(x)
 ```
 
+I've made changes to Jenny Bryan's document starting from the below section. 
+
+Binding data sets "cars" and "mtcars" using fbind()
+```{r}
+fbind(mtcars$cyl[c(2, 3, 5)], cars$speed[c(1, 2, 3)])
+```
+
+
+#### 3) Function : check_factor_character()
+check_factor_character() determines if factors are required
+
+Returns :
+
+TRUE : If factors are not required
+
+FALSE : If factors are required (i.e.., factors are not characters)
+
+```{r}
+check_factor_character(iris$Species)
+#> [1] FALSE
+```
+
+#### 4) Function : reorder_descending()
+reorder_descending() reorders the factor levels in descending order,this is used especially in plots as already discussed in fct_reorder() section of [Homework 5](https://github.com/jmurthy12/STAT545-hw-murthy-janani/blob/master/hw05/hw05.md)
+
+```{r}
+levels(iris$Species)
+levels(reorder_descending(iris$Species))
+```
+
+#### 5) Function : factor_as_orginal()
+ factor_as_orginal() re-orders the factor levels same as input data 
+```{r}
+data_1 <- c("Asia","Africa","Americas","Europe","Oceania")
+factor_as_orginal(data_1)

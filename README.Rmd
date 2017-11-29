@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+All implementation and documentation is an extension of Jennifer Bryan's [foofactors package.](https://github.com/jennybc/foofactors)
+
 **NOTE: This is a toy package created for expository purposes. It is not meant to actually be useful. If you want a package for factor handling, please see [forcats](https://cran.r-project.org/package=forcats).**
 
 ### foofactors
@@ -23,9 +25,11 @@ Factors are a very useful type of variable in R, but they can also drive you nut
 ### Installation
 
 ```{r installation, eval = FALSE}
-devtools::install_github("jennybc/foofactors")
+devtools::install_github("jmurthy12/foofactors")
 ```
-  
+
+
+
 ### Quick demo
 
 Binding two factors via `fbind()`:
@@ -57,8 +61,81 @@ table(x)
 as.data.frame(table(x))
 ```
 
+#### 1) Function : freq_out()
+
 The `freq_out()` function returns a frequency table as a well-named `tbl_df`:
 
 ```{r}
 freq_out(x)
 ```
+
+###### Unit Test
+Link for unit test is avalable [here](https://github.com/jmurthy12/foofactors/blob/master/tests/testthat/test_freq_out.R)
+
+
+#### 2) Function : fbind()
+
+Let's try fbind() on data sets "cars" and "mtcars"
+```{r}
+str(mtcars)
+```
+
+```{r}
+str(cars)
+```
+
+```{r}
+fbind(mtcars$cyl[c(2, 3, 5)], cars$speed[c(1, 2, 3)])
+```
+
+Let's work on Iris data set as suggested in class
+```{r}
+str(iris)
+```
+###### Unit Test
+Link for unit test is avalable [here](https://github.com/jmurthy12/foofactors/blob/master/tests/testthat/test_fbind.R)
+
+
+I've made changes to Jenny Bryan's document starting from the below section. 
+
+
+
+#### 3) Function : check_factor_character()
+check_factor_character() determines if factors are required
+
+Returns :
+
+TRUE : If factors are not required
+FALSE : If factors are required (i.e.., factors are not characters)
+
+```{r}
+check_factor_character(iris$Species)
+#> [1] FALSE
+```
+
+###### Unit Test
+Link for unit test is avalable [here](https://github.com/jmurthy12/foofactors/blob/master/tests/testthat/test_check_factor_character.R)
+
+
+#### 4) Function : reorder_descending()
+reorder_descending() reorders the factor levels in descending order,this is used especially in plots as already discussed in fct_reorder() section of [Homework 5](https://github.com/jmurthy12/STAT545-hw-murthy-janani/blob/master/hw05/hw05.md)
+
+```{r}
+levels(iris$Species)
+levels(reorder_descending(iris$Species))
+```
+
+###### Unit Test
+Link for unit test is avalable [here](https://github.com/jmurthy12/foofactors/blob/master/tests/testthat/test_reorder_descending.R)
+
+
+#### 5) Function : factor_as_orginal()
+ factor_as_orginal() re-orders the factor levels same as input data 
+```{r}
+library(gapminder)
+factor_as_orginal(gapminder$continent)
+```
+
+
+###### Unit Test
+Link for unit test is avalable [here](https://github.com/jmurthy12/foofactors/blob/master/tests/testthat/test_factor_as_orginal.R)

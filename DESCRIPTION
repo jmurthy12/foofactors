@@ -1,8 +1,8 @@
 Package: foofactors
 Title: Make Factors Less Annoying
 Version: 0.0.0.9000
-Authors@R: person("Jennifer", "Bryan", role=c("aut", "cre"),
-    email = "jenny@stat.ubc.ca")
+Authors@R: person("Janani", "Murthy", role=c("aut", "cre"),
+    email = "janani.murthy@alumni.ubc.ca")
 Description: Factors have driven people to extreme measures, like ordering
     custom conference ribbons and laptop stickers to express how HELLNO we
     feel about stringsAsFactors. And yet, sometimes you need them. Can they
@@ -11,11 +11,11 @@ Depends:
     R (>= 3.2.2)
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 6.0.1
 Suggests: testthat,
     knitr,
     rmarkdown
 Imports: dplyr
 VignetteBuilder: knitr
-URL: https://github.com/jennybc/foofactors
-BugReports: https://github.com/jennybc/foofactors/issues
+URL: https://github.com/jmurthy12/foofactors
+BugReports: https://github.com/jmurthy12/foofactors/issues

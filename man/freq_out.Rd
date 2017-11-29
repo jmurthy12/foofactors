@@ -18,4 +18,3 @@ Make a frequency table for a factor
 \examples{
 freq_out(iris$Species)
 }
-
